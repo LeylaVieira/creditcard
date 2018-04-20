@@ -1,0 +1,173 @@
+@import '~sass/variables';
+
+.form__wrapper {
+    background: $white;
+    position: relative;
+    width: 30%;
+    margin: auto;
+    margin-top: 150px;
+    border-radius: calc( #{$radius}/2 );
+}
+
+.credit-card__wrapper {
+    width: 380px;
+    height: 235px;
+    position: relative;
+    perspective: 600;
+
+    top: -90px;
+    margin: auto;
+}
+
+.credit-card__container {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    transform-style: preserve-3d;
+    transition: all 1s ease-in-out;
+    cursor: pointer;
+
+    &:hover {
+        transform: rotateY(180deg);
+    }
+}
+
+.credit-card__front,
+.credit-card__back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    background: linear-gradient(to right, $primary-light, $primary);
+    border-radius: $radius;
+    padding: 20px;
+    color: $white;
+    box-shadow: 10px 10px 41px -11px rgba(0,0,0,0.34);
+}
+
+.credit-card__front {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    
+}
+
+.credit-card__back {
+    transform: rotateY(180deg);
+    display: flex;
+    align-items: center;
+}
+
+.credit-card__icons {
+    display: flex;
+    justify-content: space-between;
+}
+
+.credit-card__number {
+    font-family: $font-secondary;
+    font-weight: 400;
+    font-size: 2.5em;
+    text-align: center;
+    text-shadow: 1px 1px 3px #20506a;
+}
+
+.credit-card__data {
+    display: flex;
+    justify-content: space-between;
+}
+
+.label {
+    display: block;
+    text-transform: uppercase;
+    font-size: 0.7em;
+    margin-bottom: 0.2em;
+}
+
+.name-holder,
+.ccv,
+.expires {
+    font-family: $font-secondary;
+    font-size: 1.2em;
+    font-weight: 500;
+    text-shadow: 1px 1px 3px #20506a;
+    text-transform: uppercase;
+}
+
+.chip {
+    width: 50px;
+    img {
+        width: 100%;
+    }
+}
+
+.credit-card__ccv {
+    width: 100%;
+    text-align: right;
+
+    &:before {
+        content: "";
+        display: block;
+        width: 100%;
+        height: 48px;
+        background: $black;
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 30px;
+    }
+
+    .label {
+        margin-right: 10px;
+    }
+}
+
+.ccv {
+    color: $black;
+    text-shadow: none;
+    background: $white;
+    padding: 10px;
+    border-radius: calc( #{$radius}/2 );
+    min-height: 35px;
+}
+
+.credit-card__form {
+    margin-top: -90px;
+    padding: 40px;
+
+    & > .input__field {
+        margin-bottom: 20px;
+    }
+}
+
+input, select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid $gray;
+    border-radius: calc( #{$radius}/2 );
+    text-transform: uppercase;
+}
+
+input + input,
+select + select {
+    margin-left: 10px; 
+}
+
+.input__group {
+    display: flex;
+    justify-content: space-between;
+}
+
+.input__field {
+    &.expires__date {
+        flex-grow: 0.6;
+    }
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    background: linear-gradient(to right, $primary, $primary-light);
+    border: none;
+    color: $white;
+    border-radius: calc( #{$radius}/2 );
+}

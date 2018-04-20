@@ -1,20 +1,104 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
-</div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://github.com/angular/angular-cli/wiki">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-  </li>
-</ul>
+<svg style="display: none;" >
+  <symbol id="visa-icon" viewBox="0 0 258.3 83.4">
+      <path fill="#FFFFFF" d="M76.1,1.5L54.4,56.4L45.6,9.7c-1-5.2-5.1-8.2-9.6-8.2H0.5L0,3.8C7.3,5.4,15.6,8,20.6,10.7
+  c3.1,1.7,3.9,3.1,5,7.1l16.6,64.4h22.1L98.1,1.5H76.1z M107,1.5L89.7,82.1h20.9l17.3-80.7H107z M226.7,23.3l6.3,30.3h-17.3
+  L226.7,23.3z M223.6,1.5c-4,0-7.4,2.3-8.9,5.9l-31.3,74.8h21.9l4.4-12.1h26.8l2.5,12.1h19.3L241.4,1.5H223.6z M133.6,26.7
+  c-0.1,11.6,10.4,18.1,18.3,22c8.1,4,10.9,6.5,10.8,10c-0.1,5.4-6.5,7.8-12.5,7.9c-10.5,0.2-16.6-2.8-21.4-5.1L125,79.1
+  c4.9,2.2,13.9,4.2,23.2,4.3c21.9,0,36.3-10.8,36.3-27.6c0.1-21.3-29.4-22.5-29.2-32c0.1-2.9,2.8-6,8.9-6.8c3-0.4,11.2-0.7,20.6,3.6
+  l3.7-17.1c-5-1.8-11.5-3.6-19.5-3.6C148.2,0,133.7,11,133.6,26.7"/>
+  </symbol>
+</svg>
 
+<section class="form__wrapper">
+
+  <!--CREDIT CARD-->
+  <div class="credit-card__wrapper">
+      <div class="credit-card__container">
+          <div class="credit-card__front">
+              <div class="credit-card__icons">
+                  <figure class="chip">
+                      <img src="assets/img/chip.png">
+                  </figure>
+                  <svg width="60" height="21"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#visa-icon"></use></svg>
+              </div>
+              <div class="credit-card__number">
+                  <span>{{npart1}}</span>
+                  <span>{{npart2}}</span>
+                  <span>{{npart3}}</span>
+                  <span>{{npart4}}</span>
+              </div>
+              <div class="credit-card__data">
+                  <div class="credit-card__holder">
+                      <span class="label">Card holder</span>
+                      <p class="name-holder">{{holder}}</p>
+                  </div>
+                  <div class="credit-card__expires">
+                      <span class="label">Expires</span>
+                      <p class="expires">{{month}}/{{year}}</p>
+                  </div>
+              </div>
+          </div>
+          <div class="credit-card__back">
+              <div class="credit-card__ccv">
+                  <span class="label">CCV</span>
+                  <p class="ccv">{{ccv}}</p>
+              </div>
+          </div>
+      </div>
+  </div>
+
+  <!--FORM-->
+  <div class="credit-card__form">
+      <div class="input__field">
+          <label class="label">CARD NUMBER</label>
+          <div class="input__group">   
+              <input type="number" [(ngModel)]="npart1" />
+              <input type="number" [(ngModel)]="npart2" />
+              <input type="number" [(ngModel)]="npart3" />
+              <input type="number" [(ngModel)]="npart4" />
+          </div>
+      </div>
+      <div class="input__field">
+          <label class="label">CARD HOLDER</label>
+          <input type="text" [(ngModel)]="holder" />
+      </div>
+      <div class="input__field">
+          <div class="input__group">
+              <div class="input__field expires__date">
+                  <label class="label">EXPIRATION DATE</label>
+                  <div class="input__group">
+                      <select [(ngModel)]="month">
+                          <option>01</option>
+                          <option>02</option>
+                          <option>03</option>
+                          <option>04</option>
+                          <option>05</option>
+                          <option>06</option>
+                          <option>07</option>
+                          <option>08</option>
+                          <option>09</option>
+                          <option>10</option>
+                          <option>11</option>
+                          <option>12</option>
+                      </select>
+                      <select [(ngModel)]="year">
+                          <option>2017</option>
+                          <option>2018</option>
+                          <option>2019</option>
+                          <option>2020</option>
+                          <option>2021</option>
+                          <option>2022</option>
+                      </select>
+                  </div>
+              </div>
+              <div class="input__field">
+                  <label class="label">CCV</label>
+                  <input type="number" [(ngModel)]="ccv" />
+              </div>
+          </div>
+      </div>
+      <button>SEND</button>
+  </div>
+
+
+</section>

@@ -1,0 +1,8 @@
+@import './fonts';
+@import './variables';
+@import './reset';
+@import './mixins';
+
+body {
+    background: $gray;
+}
