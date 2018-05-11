@@ -30,6 +30,9 @@
     &:hover {
         transform: rotateY(180deg);
     }
+    &.show-back {
+        transform: rotateY(180deg);
+    }
 }
 
 .credit-card__front,
@@ -66,7 +69,7 @@
 .credit-card__number {
     font-family: $font-secondary;
     font-weight: 400;
-    font-size: 2.5em;
+    font-size: 2.3em;
     text-align: center;
     text-shadow: 1px 1px 3px #20506a;
 }
@@ -127,7 +130,7 @@
     background: $white;
     padding: 10px;
     border-radius: calc( #{$radius}/2 );
-    min-height: 35px;
+    min-height: 40px;
 }
 
 .credit-card__form {
@@ -170,4 +173,22 @@ button {
     border: none;
     color: $white;
     border-radius: calc( #{$radius}/2 );
+    cursor: pointer;
+}
+
+button[disabled]{
+    cursor: not-allowed;
+    box-shadow: none;
+    opacity: .65;
+}
+
+.credit-card__expires {
+    min-width: 75px;
+}
+
+.error {
+    font-size: 12px;
+    padding: 8px 10px;
+    background: $error-bg;
+    color: $error-font;
 }

@@ -11,94 +11,146 @@
 
 <section class="form__wrapper">
 
-  <!--CREDIT CARD-->
-  <div class="credit-card__wrapper">
-      <div class="credit-card__container">
-          <div class="credit-card__front">
-              <div class="credit-card__icons">
-                  <figure class="chip">
-                      <img src="assets/img/chip.png">
-                  </figure>
-                  <svg width="60" height="21"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#visa-icon"></use></svg>
-              </div>
-              <div class="credit-card__number">
-                  <span>{{npart1}}</span>
-                  <span>{{npart2}}</span>
-                  <span>{{npart3}}</span>
-                  <span>{{npart4}}</span>
-              </div>
-              <div class="credit-card__data">
-                  <div class="credit-card__holder">
-                      <span class="label">Card holder</span>
-                      <p class="name-holder">{{holder}}</p>
-                  </div>
-                  <div class="credit-card__expires">
-                      <span class="label">Expires</span>
-                      <p class="expires">{{month}}/{{year}}</p>
-                  </div>
-              </div>
-          </div>
-          <div class="credit-card__back">
-              <div class="credit-card__ccv">
-                  <span class="label">CCV</span>
-                  <p class="ccv">{{ccv}}</p>
-              </div>
-          </div>
-      </div>
-  </div>
+    <!--CREDIT CARD-->
+    <div class="credit-card__wrapper">
+        <div class="credit-card__container" #card>
+            <div class="credit-card__front">
+                <div class="credit-card__icons">
+                    <figure class="chip">
+                        <img src="assets/img/chip.png">
+                    </figure>
+                    <svg width="60" height="21"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#visa-icon"></use></svg>
+                </div>
+                <div class="credit-card__number">
+                    <span>{{creditCard.number.substr(0,4)}}</span>
+                    <span>{{creditCard.number.substr(4,4)}}</span>
+                    <span>{{creditCard.number.substr(8,4)}}</span>
+                    <span>{{creditCard.number.substr(12,4)}}</span>
+                </div>
+                <div class="credit-card__data">
+                    <div class="credit-card__holder">
+                        <span class="label">Card holder</span>
+                        <p class="name-holder">{{creditCard.holder}}</p>
+                    </div>
+                    <div class="credit-card__expires">
+                        <span class="label">Expires</span>
+                        <p class="expires">{{creditCard.month}} / {{creditCard.year}}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="credit-card__back">
+                <div class="credit-card__ccv">
+                    <span class="label">CCV</span>
+                    <p class="ccv">{{creditCard.ccv}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
 
-  <!--FORM-->
-  <div class="credit-card__form">
-      <div class="input__field">
-          <label class="label">CARD NUMBER</label>
-          <div class="input__group">   
-              <input type="number" [(ngModel)]="npart1" />
-              <input type="number" [(ngModel)]="npart2" />
-              <input type="number" [(ngModel)]="npart3" />
-              <input type="number" [(ngModel)]="npart4" />
-          </div>
-      </div>
-      <div class="input__field">
-          <label class="label">CARD HOLDER</label>
-          <input type="text" [(ngModel)]="holder" />
-      </div>
-      <div class="input__field">
-          <div class="input__group">
-              <div class="input__field expires__date">
-                  <label class="label">EXPIRATION DATE</label>
-                  <div class="input__group">
-                      <select [(ngModel)]="month">
-                          <option>01</option>
-                          <option>02</option>
-                          <option>03</option>
-                          <option>04</option>
-                          <option>05</option>
-                          <option>06</option>
-                          <option>07</option>
-                          <option>08</option>
-                          <option>09</option>
-                          <option>10</option>
-                          <option>11</option>
-                          <option>12</option>
-                      </select>
-                      <select [(ngModel)]="year">
-                          <option>2017</option>
-                          <option>2018</option>
-                          <option>2019</option>
-                          <option>2020</option>
-                          <option>2021</option>
-                          <option>2022</option>
-                      </select>
-                  </div>
-              </div>
-              <div class="input__field">
-                  <label class="label">CCV</label>
-                  <input type="number" [(ngModel)]="ccv" />
-              </div>
-          </div>
-      </div>
-      <button>SEND</button>
-  </div>
-
-
+    <!--FORM-->
+    <form (ngSubmit)="onSubmit()" #creditCardForm="ngForm">
+        <div class="credit-card__form">
+        
+            <div class="input__field">
+                <label class="label">CARD NUMBER</label>
+                <input type="text" 
+                tabindex="1"
+                id="creditCardNumber" 
+                required 
+                minlength="16"
+                [(ngModel)]="creditCard.number" 
+                [ngModelOptions]="{standalone: true}" 
+                name="creditCardNumber"
+                mask="0000 0000 0000 0000"
+                #creditCardNumber="ngModel" />
+                <p class="error" [hidden]="creditCardNumber.valid || creditCardNumber.pristine">
+                    <span [hidden]="!creditCardNumber.hasError('minlength')">Credit card number should be 16 digits</span>
+                    <span [hidden]="!creditCardNumber.hasError('required')">Credit card number is required</span>
+                </p>
+            </div>
+            <div class="input__field">
+                <label class="label">CARD HOLDER</label>
+                <input type="text" 
+                tabindex="2"
+                id="creditCardHolder"
+                required
+                [(ngModel)]="creditCard.holder"
+                [ngModelOptions]="{standalone: true}" 
+                name="creditCardHolder"
+                #creditCardHolder="ngModel"/>
+                <p class="error" [hidden]="creditCardHolder.valid || creditCardHolder.pristine">
+                    <span [hidden]="!creditCardHolder.hasError('required')">Credit card holder is required</span>
+                </p>
+            </div>
+            <div class="input__field">
+                <div class="input__group">
+                    <div class="input__field expires__date">
+                        <label class="label">EXPIRATION DATE</label>
+                        <div class="input__group">
+                            <select tabindex="3" 
+                            required 
+                            id="creditCardMonth"
+                            [(ngModel)]="creditCard.month" 
+                            name="creditCardMonth"
+                            [ngModelOptions]="{standalone: true}"
+                            #creditCardMonth="ngModel">
+                                <option>01</option>
+                                <option>02</option>
+                                <option>03</option>
+                                <option>04</option>
+                                <option>05</option>
+                                <option>06</option>
+                                <option>07</option>
+                                <option>08</option>
+                                <option>09</option>
+                                <option>10</option>
+                                <option>11</option>
+                                <option>12</option>
+                            </select>
+                            <select tabindex="4" 
+                            required 
+                            id="creditCardYear"
+                            [(ngModel)]="creditCard.year" 
+                            [ngModelOptions]="{standalone: true}"
+                            name="creditCardYear"
+                            #creditCardYear="ngModel">
+                                <option>2017</option>
+                                <option>2018</option>
+                                <option>2019</option>
+                                <option>2020</option>
+                                <option>2021</option>
+                                <option>2022</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="input__field">
+                        <label class="label">CCV</label>
+                        <input type="text" tabindex="5"
+                        required
+                        id="creditCardCcv"
+                        minlength="4"
+                        [(ngModel)]="creditCard.ccv" 
+                        (focus)="f_ccvFocus($event)"
+                        (blur)="f_ccvBlur($event)"
+                        [ngModelOptions]="{standalone: true}"
+                        mask="0000"
+                        name="creditCardCcv"
+                        #creditCardCcv="ngModel"
+                        />
+                    </div>
+                </div>
+                <p class="error" [hidden]="creditCardCcv.valid || creditCardCcv.pristine">
+                    <span [hidden]="!creditCardCcv.hasError('minlength')">CCV should be 4 digits</span>
+                    <span [hidden]="!creditCardCcv.hasError('required')">CCV is required</span>
+                </p>
+                <p class="error" [hidden]="creditCardMonth.valid || creditCardMonth.pristine">
+                    <span [hidden]="!creditCardMonth.hasError('required')">Month is required</span>
+                </p>
+                <p class="error" [hidden]="creditCardYear.valid || creditCardYear.pristine">
+                    <span [hidden]="!creditCardYear.hasError('required')">Month is required</span>
+                </p>
+            </div>
+            <button type="submit" [disabled]="!creditCardForm.valid">SEND</button>
+        </div>
+    </form>
 </section>
