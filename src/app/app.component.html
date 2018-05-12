@@ -55,31 +55,29 @@
                 <label class="label">CARD NUMBER</label>
                 <input type="text" 
                 tabindex="1"
-                id="creditCardNumber" 
+                id="number" 
                 required 
                 minlength="16"
-                [(ngModel)]="creditCard.number" 
-                [ngModelOptions]="{standalone: true}" 
-                name="creditCardNumber"
+                [(ngModel)]="creditCard.number"
+                name="number"
                 mask="0000 0000 0000 0000"
-                #creditCardNumber="ngModel" />
-                <p class="error" [hidden]="creditCardNumber.valid || creditCardNumber.pristine">
-                    <span [hidden]="!creditCardNumber.hasError('minlength')">Credit card number should be 16 digits</span>
-                    <span [hidden]="!creditCardNumber.hasError('required')">Credit card number is required</span>
+                #number="ngModel" />
+                <p class="error" [hidden]="number.valid || number.pristine">
+                    <span [hidden]="!number.hasError('minlength')">Credit card number should be 16 digits</span>
+                    <span [hidden]="!number.hasError('required')">Credit card number is required</span>
                 </p>
             </div>
             <div class="input__field">
                 <label class="label">CARD HOLDER</label>
                 <input type="text" 
                 tabindex="2"
-                id="creditCardHolder"
+                id="holder"
                 required
                 [(ngModel)]="creditCard.holder"
-                [ngModelOptions]="{standalone: true}" 
-                name="creditCardHolder"
-                #creditCardHolder="ngModel"/>
-                <p class="error" [hidden]="creditCardHolder.valid || creditCardHolder.pristine">
-                    <span [hidden]="!creditCardHolder.hasError('required')">Credit card holder is required</span>
+                name="holder"
+                #holder="ngModel"/>
+                <p class="error" [hidden]="holder.valid || holder.pristine">
+                    <span [hidden]="!holder.hasError('required')">Credit card holder is required</span>
                 </p>
             </div>
             <div class="input__field">
@@ -89,11 +87,10 @@
                         <div class="input__group">
                             <select tabindex="3" 
                             required 
-                            id="creditCardMonth"
+                            id="month"
                             [(ngModel)]="creditCard.month" 
-                            name="creditCardMonth"
-                            [ngModelOptions]="{standalone: true}"
-                            #creditCardMonth="ngModel">
+                            name="month"
+                            #month="ngModel">
                                 <option>01</option>
                                 <option>02</option>
                                 <option>03</option>
@@ -109,11 +106,10 @@
                             </select>
                             <select tabindex="4" 
                             required 
-                            id="creditCardYear"
+                            id="year"
                             [(ngModel)]="creditCard.year" 
-                            [ngModelOptions]="{standalone: true}"
-                            name="creditCardYear"
-                            #creditCardYear="ngModel">
+                            name="year"
+                            #year="ngModel">
                                 <option>2017</option>
                                 <option>2018</option>
                                 <option>2019</option>
@@ -127,27 +123,26 @@
                         <label class="label">CCV</label>
                         <input type="text" tabindex="5"
                         required
-                        id="creditCardCcv"
+                        id="ccv"
                         minlength="4"
                         [(ngModel)]="creditCard.ccv" 
                         (focus)="f_ccvFocus($event)"
                         (blur)="f_ccvBlur($event)"
-                        [ngModelOptions]="{standalone: true}"
                         mask="0000"
-                        name="creditCardCcv"
-                        #creditCardCcv="ngModel"
+                        name="ccv"
+                        #ccv="ngModel"
                         />
                     </div>
                 </div>
-                <p class="error" [hidden]="creditCardCcv.valid || creditCardCcv.pristine">
-                    <span [hidden]="!creditCardCcv.hasError('minlength')">CCV should be 4 digits</span>
-                    <span [hidden]="!creditCardCcv.hasError('required')">CCV is required</span>
+                <p class="error" [hidden]="ccv.valid || ccv.pristine">
+                    <span [hidden]="!ccv.hasError('minlength')">CCV should be 4 digits</span>
+                    <span [hidden]="!ccv.hasError('required')">CCV is required</span>
                 </p>
-                <p class="error" [hidden]="creditCardMonth.valid || creditCardMonth.pristine">
-                    <span [hidden]="!creditCardMonth.hasError('required')">Month is required</span>
+                <p class="error" [hidden]="month.valid || month.pristine">
+                    <span [hidden]="!month.hasError('required')">Month is required</span>
                 </p>
-                <p class="error" [hidden]="creditCardYear.valid || creditCardYear.pristine">
-                    <span [hidden]="!creditCardYear.hasError('required')">Month is required</span>
+                <p class="error" [hidden]="year.valid || year.pristine">
+                    <span [hidden]="!year.hasError('required')">Month is required</span>
                 </p>
             </div>
             <button type="submit" [disabled]="!creditCardForm.valid">SEND</button>
